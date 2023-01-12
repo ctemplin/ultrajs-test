@@ -25,6 +25,6 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "ctemplin-ultrajs-test" # Your deploy project name
-          entrypoint: "server.jsx"
+          entrypoint: "server.js"
           root: .ultra
           import-map: importMap.server.json
