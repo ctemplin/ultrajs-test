@@ -27,4 +27,4 @@ jobs:
           project: "ctemplin-ultrajs-test-2pgawbv32rrg" # Your deploy project name
           entrypoint: "server.js"
           root: .ultra
-          import-map: importMap.json
+          import-map: importMap.server.json
