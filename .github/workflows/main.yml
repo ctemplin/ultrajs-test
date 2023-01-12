@@ -19,7 +19,7 @@ jobs:
           deno-version: 1.25.1
 
       - name: Build site
-        run: deno run -A ./build.ts # Your build script
+        run: deno run -A ./build.js # Your build script
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
