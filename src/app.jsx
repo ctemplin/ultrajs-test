@@ -21,8 +21,7 @@ export default function App() {
           </h1>
           <p>
             Welcome to{" "}
-            <strong>Ultra</strong>. This is a barebones starter for your web
-            app.
+            <strong>Ultra</strong>.
           </p>
           <p>
             Take{" "}
