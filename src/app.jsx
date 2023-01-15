@@ -1,10 +1,15 @@
 import useAsset from "ultra/hooks/use-asset.js";
 import { Link, Route, Switch } from "wouter";
+import withMessage from './components/withMessage.jsx'
 import HomePage from "./pages/Home.jsx";
 import AboutPage from "./pages/About.jsx";
 
 export default function App() {
   console.log("Hello world!");
+
+  const HomePage_message = withMessage(HomePage)
+  const AboutPage_message = withMessage(AboutPage)
+
   return (
     <html lang="en">
       <head>
@@ -36,10 +41,10 @@ export default function App() {
           </p>
           <Switch>
             <Route path="/">
-              <HomePage msgText="show/hide message" />
+              <HomePage_message msgText="show/hide message" />
             </Route>
             <Route path="/about">
-              <AboutPage />
+              <AboutPage_message msgText="reveal/conceal message" />
             </Route>
             <Route>
               404
