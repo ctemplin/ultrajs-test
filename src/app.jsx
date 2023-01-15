@@ -36,7 +36,7 @@ export default function App() {
           </p>
           <Switch>
             <Route path="/">
-              <HomePage />
+              <HomePage msgText="show/hide message" />
             </Route>
             <Route path="/about">
               <AboutPage />
