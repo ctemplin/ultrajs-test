@@ -5,7 +5,7 @@ const withMessage = (InnerComponent) => {
 
     const {msgText="default"} = {...props}
 
-    const [showMsg, setShowMsg] = useState(props.showMsg)
+    const [showMsg, setShowMsg] = useState(false)
   
     const style = () => {
       return {
