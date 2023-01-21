@@ -1,10 +1,13 @@
+import React from "react";
 import useAsset from "ultra/hooks/use-asset.js";
 import { Link, Route, Switch } from "wouter";
 import withMessage from './components/withMessage.jsx'
 import HomePage from "./pages/Home.jsx";
 import AboutPage from "./pages/About.jsx";
+import Posts from "./components/posts.jsx";
 
 export default function App() {
+  const [postId, setPostId] = React.useState(-1);
   console.log("Hello world!");
 
   const HomePage_message = withMessage(HomePage)
@@ -24,6 +27,11 @@ export default function App() {
           <h1>
             <span></span>__<span></span>
           </h1>
+          {postId > -1 ? (
+            <Post postId={postId} setPostId={setPostId} />
+          ) : (
+            <Posts setPostId={setPostId} />
+          )}
           <p>
             Welcome to{" "}
             <strong>Ultra</strong>.

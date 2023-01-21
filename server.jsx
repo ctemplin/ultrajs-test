@@ -7,24 +7,36 @@ import { Router } from "wouter";
 import staticLocationHook from "wouter/static-location";
 import { SearchParamsProvider } from "./src/wouter/index.jsx";
 
+// React Query
+import { QueryClientProvider } from "@tanstack/react-query";
+import { useDehydrateReactQuery } from "./src/react-query/useDehydrateReactQuery.jsx";
+import { queryClient } from "./src/react-query/query-client.js";
+
 const server = await createServer({
   importMapPath: import.meta.resolve("./importMap.json"),
   browserEntrypoint: import.meta.resolve("./client.jsx"),
 });
 
 function ServerApp({ context }) {
+  useDehydrateReactQuery(queryClient);
+
   const requestUrl = new URL(context.req.url);
 
   return (
-    <Router hook={staticLocationHook(requestUrl.pathname)}>
-      <SearchParamsProvider value={requestUrl.searchParams}>
-        <App />
-      </SearchParamsProvider>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router hook={staticLocationHook(requestUrl.pathname)}>
+        <SearchParamsProvider value={requestUrl.searchParams}>
+          <App />
+        </SearchParamsProvider>
+      </Router>
+    </QueryClientProvider>
   );
 }
 
 server.get("*", async (context) => {
+  // clear query cache
+  queryClient.clear();
+
   /**
    * Render the request
    */
