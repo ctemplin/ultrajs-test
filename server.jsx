@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.164.0/http/server.ts";
 import { createServer } from "ultra/server.ts";
 import App from "./src/app.jsx";
+import React from "react";
 
 // Wouter
 import { Router } from "wouter";
@@ -8,9 +9,9 @@ import staticLocationHook from "wouter/static-location";
 import { SearchParamsProvider } from "./src/wouter/index.jsx";
 
 // React Query
-import { QueryClientProvider } from "@tanstack/react-query";
-import { useDehydrateReactQuery } from "./src/react-query/useDehydrateReactQuery.jsx";
-import { queryClient } from "./src/react-query/query-client.js";
+//import { QueryClientProvider } from "@tanstack/react-query";
+//import { useDehydrateReactQuery } from "./src/react-query/useDehydrateReactQuery.jsx";
+//import { queryClient } from "./src/react-query/query-client.js";
 
 const server = await createServer({
   importMapPath: import.meta.resolve("./importMap.json"),
@@ -18,24 +19,26 @@ const server = await createServer({
 });
 
 function ServerApp({ context }) {
-  useDehydrateReactQuery(queryClient);
+  //useDehydrateReactQuery(queryClient);
 
   const requestUrl = new URL(context.req.url);
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <React.Fragment>
+    {/* </Fragment><QueryClientProvider client={queryClient}> */}
       <Router hook={staticLocationHook(requestUrl.pathname)}>
         <SearchParamsProvider value={requestUrl.searchParams}>
           <App />
         </SearchParamsProvider>
       </Router>
-    </QueryClientProvider>
+    {/* </QueryClientProvider> */}
+    </React.Fragment>
   );
 }
 
 server.get("*", async (context) => {
   // clear query cache
-  queryClient.clear();
+  // queryClient.clear();
 
   /**
    * Render the request
