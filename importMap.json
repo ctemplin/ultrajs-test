@@ -1,6 +1,5 @@
 {
   "imports": {
-    "fetch": "https://esm.sh/fetch@1.1.0",
     "react": "https://esm.sh/react@18.2.0?dev",
     "react/": "https://esm.sh/react@18.2.0/",
     "react-dom": "https://esm.sh/react-dom@18.2.0",
