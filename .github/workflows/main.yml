@@ -16,7 +16,7 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@main
         with:
-          deno-version: 1.29.4
+          deno-version: 1.25.1
 
       - name: Build site
         run: deno run -A ./build.js # Your build script
