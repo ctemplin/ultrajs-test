@@ -5,10 +5,33 @@ import HomePage from "./pages/Home.jsx";
 import AboutPage from "./pages/About.jsx";
 
 export default function App() {
-  console.log("Hello world!");
 
   const HomePage_message = withMessage(HomePage)
   const AboutPage_message = withMessage(AboutPage)
+
+  const handleInstall = async (ev) => {
+    if ('serviceWorker' in navigator) {
+      try {
+        const registration = await navigator.serviceWorker.register(
+          'sw.js',
+          {
+            scope: './',
+          }
+        );
+        if (registration.installing) {
+          console.log('Service worker installing');
+        } else if (registration.waiting) {
+          console.log('Service worker installed');
+          //navigator.serviceWorker.dispatchEvent('install')
+        } else if (registration.active) {
+          console.log('Service worker active');
+          //navigator.serviceWorker.dispatchEvent('install')
+        }
+      } catch (error) {
+        console.error(`Registration failed with ${error}`);
+      }
+    }
+  }
 
   return (
     <html lang="en">
@@ -21,24 +44,7 @@ export default function App() {
       </head>
       <body>
         <main>
-          <h1>
-            <span></span>__<span></span>
-          </h1>
-          <p>
-            Welcome to{" "}
-            <strong>Ultra</strong>.
-          </p>
-          <p>
-            Take{" "}
-            <a
-              href="https://ultrajs.dev/docs"
-              target="_blank"
-            >
-              this
-            </a>, you may need it where you are going. It will show you how to
-            customize your routing, data fetching, and styling with popular
-            libraries.
-          </p>
+          <div onClick={handleInstall}>Install Local</div>
           <Switch>
             <Route path="/">
               <HomePage_message msgText="show/hide message" />

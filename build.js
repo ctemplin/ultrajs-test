@@ -12,7 +12,8 @@ builder.ignore([
   "./.vscode/**",
   "./.github/**",
   "./.gitignore",
-  "./test",
+  "./test/",
+  "./*.code-workspace",
 ]);
 
 // deno-lint-ignore no-unused-vars

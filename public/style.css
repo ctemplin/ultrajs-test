@@ -4,7 +4,6 @@ body {
   padding: 1rem;
   font-family: monospace;
   background: #ddd;
-  text-align: center;
 }
 
 h1 {
@@ -17,6 +16,41 @@ h1 {
 h1 span::before {
   content: '@';
   animation: blink 3s infinite;
+}
+
+/* HOME */
+.homeMain {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.table {
+  background-color: lightgray;
+  display: table;
+  table-layout: fixed;
+  /* border-collapse: collapse; */
+  text-align: initial;
+  width: max-content;
+}
+
+.table, .table td {
+  border: thin solid black;
+}
+
+.table td:last-child {
+  text-align: right;
+}
+
+.table td {
+  padding: 1em;
+}
+
+input {
+  background-color: lightgray;
+}
+.ageInput {
+  width: 3em;
 }
 
 @keyframes blink {
